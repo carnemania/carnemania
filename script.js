@@ -1,20 +1,12 @@
 /* =========================================
-   CARNEMANÍA
-   Carrito + WhatsApp + mensajes rotativos
+   CARNEMANÍA - CARRITO
 ========================================= */
 
-
-/* =========================================
-   CONFIGURACIÓN
-========================================= */
-
-// Número de WhatsApp del vendedor.
-// Uruguay: 598 + número sin el 0 inicial.
 const WHATSAPP_NUMBER = "59894699373";
 
 
 /* =========================================
-   MENSAJES DE LA BARRA
+   MENSAJES SUPERIORES
 ========================================= */
 
 const announcements = [
@@ -32,6 +24,8 @@ const announcementText =
 
 function changeAnnouncement() {
 
+    if (!announcementText) return;
+
     announcementText.style.opacity = "0";
 
     setTimeout(() => {
@@ -48,13 +42,9 @@ function changeAnnouncement() {
         announcementText.style.opacity = "1";
 
     }, 300);
-
 }
 
 
-/*
-   Cambia cada 5 segundos.
-*/
 setInterval(changeAnnouncement, 5000);
 
 
@@ -71,13 +61,13 @@ let cart = [];
 
 function addToCart(name, price) {
 
-    const existingProduct =
-        cart.find(product => product.name === name);
-
+    const existingProduct = cart.find(
+        product => product.name === name
+    );
 
     if (existingProduct) {
 
-        existingProduct.quantity++;
+        existingProduct.quantity += 1;
 
     } else {
 
@@ -86,9 +76,7 @@ function addToCart(name, price) {
             price: price,
             quantity: 1
         });
-
     }
-
 
     updateCart();
 
@@ -102,15 +90,13 @@ function addToCart(name, price) {
 
 function changeQuantity(index, amount) {
 
+    if (!cart[index]) return;
+
     cart[index].quantity += amount;
 
-
     if (cart[index].quantity <= 0) {
-
         cart.splice(index, 1);
-
     }
-
 
     updateCart();
 }
@@ -121,6 +107,8 @@ function changeQuantity(index, amount) {
 ========================================= */
 
 function removeProduct(index) {
+
+    if (!cart[index]) return;
 
     cart.splice(index, 1);
 
@@ -147,9 +135,10 @@ function updateCart() {
         document.getElementById("whatsappButton");
 
 
-    /*
-       Si no hay productos.
-    */
+    if (!cartItems) return;
+
+
+    /* Carrito vacío */
 
     if (cart.length === 0) {
 
@@ -160,19 +149,23 @@ function updateCart() {
             </div>
         `;
 
-        cartCount.textContent = "0";
+        if (cartCount) {
+            cartCount.textContent = "0";
+        }
 
-        cartTotal.textContent = "$0";
+        if (cartTotal) {
+            cartTotal.textContent = "$0";
+        }
 
-        whatsappButton.disabled = true;
+        if (whatsappButton) {
+            whatsappButton.disabled = true;
+        }
 
         return;
     }
 
 
-    /*
-       Crear HTML de productos.
-    */
+    /* Crear productos */
 
     let html = "";
 
@@ -192,7 +185,6 @@ function updateCart() {
 
 
         html += `
-
             <div class="cart-item">
 
                 <div class="cart-item-top">
@@ -247,26 +239,25 @@ function updateCart() {
                 </div>
 
             </div>
-
         `;
-
     });
 
 
     cartItems.innerHTML = html;
 
 
-    /*
-       Actualizar contador y total.
-    */
+    if (cartCount) {
+        cartCount.textContent = totalItems;
+    }
 
-    cartCount.textContent = totalItems;
+    if (cartTotal) {
+        cartTotal.textContent =
+            "$" + total.toLocaleString("es-UY");
+    }
 
-    cartTotal.textContent =
-        "$" + total.toLocaleString("es-UY");
-
-
-    whatsappButton.disabled = false;
+    if (whatsappButton) {
+        whatsappButton.disabled = false;
+    }
 }
 
 
@@ -276,19 +267,20 @@ function updateCart() {
 
 function openCart() {
 
-    document
-        .getElementById("cart")
-        .classList.add("active");
+    const cartElement =
+        document.getElementById("cart");
 
-    document
-        .getElementById("cartOverlay")
-        .classList.add("active");
+    const overlay =
+        document.getElementById("cartOverlay");
 
 
-    /*
-       Evita que la página de fondo
-       siga desplazándose.
-    */
+    if (cartElement) {
+        cartElement.classList.add("active");
+    }
+
+    if (overlay) {
+        overlay.classList.add("active");
+    }
 
     document.body.style.overflow = "hidden";
 }
@@ -300,21 +292,27 @@ function openCart() {
 
 function closeCart() {
 
-    document
-        .getElementById("cart")
-        .classList.remove("active");
+    const cartElement =
+        document.getElementById("cart");
 
-    document
-        .getElementById("cartOverlay")
-        .classList.remove("active");
+    const overlay =
+        document.getElementById("cartOverlay");
 
+
+    if (cartElement) {
+        cartElement.classList.remove("active");
+    }
+
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
 
     document.body.style.overflow = "";
 }
 
 
 /* =========================================
-   PEDIDO POR WHATSAPP
+   WHATSAPP
 ========================================= */
 
 function sendWhatsApp() {
@@ -323,8 +321,10 @@ function sendWhatsApp() {
         return;
     }
 
+
     let message =
         "Hola! Quiero:%0A%0A";
+
 
     cart.forEach(product => {
 
@@ -333,21 +333,24 @@ function sendWhatsApp() {
 
     });
 
+
     message +=
         "%0AQuedo atento para coordinar";
 
+
     const whatsappURL =
         `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+
 
     window.open(
         whatsappURL,
         "_blank"
     );
-
+}
 
 
 /* =========================================
-   INICIO
+   INICIAR
 ========================================= */
 
 updateCart();
