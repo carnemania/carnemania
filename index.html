@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carnemanía | Carne de calidad</title>
+    <meta name="description" content="Carnemanía - Los mejores cortes al mejor precio.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA SUPERIOR FIJA -->
+    <div class="announcement">
+        <span id="announcementText">Hacé tu pedido</span>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <span>CARNE</span>MANÍA
+        </div>
+
+        <button class="cart-button" onclick="openCart()">
+            🛒
+            <span>Carrito</span>
+            <b id="cartCount">0</b>
+        </button>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-title">CALIDAD EN CADA CORTE</p>
+
+                <h1>
+                    Buena carne.<br>
+                    <span>Buen asado.</span>
+                </h1>
+
+                <p>
+                    Elegí tus cortes, armá tu pedido
+                    y recibilo directamente por WhatsApp.
+                </p>
+
+                <a href="#productos" class="hero-button">
+                    VER CORTES
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTOS -->
+        <section class="products-section" id="productos">
+
+            <div class="section-title">
+                <p>CARNE SELECCIONADA</p>
+                <h2>Nuestros cortes</h2>
+            </div>
+
+
+            <div class="products-grid">
+
+
+                <!-- PRODUCTO 1 -->
+                <article class="product-card">
+
+                    <div class="product-image meat-image">
+                        <span>🥩</span>
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">CORTE</p>
+
+                        <h3>Asado</h3>
+
+                        <p class="product-description">
+                            Corte ideal para disfrutar un buen asado.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+                                <strong>$390</strong>
+                                <small>/ kg</small>
+                            </div>
+
+                            <button
+                                class="add-button"
+                                onclick="addToCart('Asado', 390)"
+                            >
+                                AGREGAR
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 2 -->
+                <article class="product-card">
+
+                    <div class="product-image mince-image">
+                        <span>🥩</span>
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">CARNE PICADA</p>
+
+                        <h3>Carne Picada Premium</h3>
+
+                        <p class="product-description">
+                            Carne picada seleccionada de excelente calidad.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+                                <strong>$280</strong>
+                                <small>/ kg</small>
+                            </div>
+
+                            <button
+                                class="add-button"
+                                onclick="addToCart('Carne Picada Premium', 280)"
+                            >
+                                AGREGAR
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 3 -->
+                <article class="product-card">
+
+                    <div class="product-image sausage-image">
+                        <span>🌭</span>
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">CASERO PREMIUM</p>
+
+                        <h3>Chorizo con Muzza Casero</h3>
+
+                        <p class="product-description">
+                            Chorizo casero con muzzarella, calidad Premium.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+                                <strong>$400</strong>
+                                <small>/ kg</small>
+                            </div>
+
+                            <button
+                                class="add-button"
+                                onclick="addToCart('Chorizo con Muzza Casero', 400)"
+                            >
+                                AGREGAR
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+        <section class="info-section">
+
+            <div>
+                <span>01</span>
+                <h3>Elegí</h3>
+                <p>Seleccioná los cortes que querés.</p>
+            </div>
+
+            <div>
+                <span>02</span>
+                <h3>Armá tu pedido</h3>
+                <p>Indicá la cantidad de kilos.</p>
+            </div>
+
+            <div>
+                <span>03</span>
+                <h3>Pedí por WhatsApp</h3>
+                <p>Recibimos tu pedido directamente.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CARRITO -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <aside class="cart" id="cart">
+
+        <div class="cart-header">
+
+            <h2>Tu pedido</h2>
+
+            <button onclick="closeCart()" class="close-cart">
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="cartItems" class="cart-items">
+
+            <div class="empty-cart">
+                <div>🛒</div>
+                <p>Tu carrito está vacío.</p>
+            </div>
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <span>Total estimado</span>
+
+                <strong id="cartTotal">
+                    $0
+                </strong>
+
+            </div>
+
+            <p class="transfer-info">
+                El pago se coordina mediante transferencia bancaria.
+            </p>
+
+            <button
+                id="whatsappButton"
+                class="whatsapp-button"
+                onclick="sendWhatsApp()"
+                disabled
+            >
+                HACER PEDIDO POR WHATSAPP
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-logo">
+            CARNEMANÍA
+        </div>
+
+        <p>
+            Carne seleccionada para disfrutar en casa
+            o abastecer tu negocio.
+        </p>
+
+        <span>
+            © 2026 Carnemanía
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
