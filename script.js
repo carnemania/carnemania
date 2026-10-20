@@ -323,26 +323,27 @@ function sendWhatsApp() {
         return;
     }
 
-
     let message =
-        "Hola! Quiero hacer un pedido de Carnemanía:%0A%0A";
-
-
-    let total = 0;
-
+        "Hola! Quiero:%0A%0A";
 
     cart.forEach(product => {
 
-        const subtotal =
-            product.price * product.quantity;
-
-        total += subtotal;
-
-
         message +=
-            `• ${product.quantity} kg de ${product.name} - $${subtotal}%0A`;
+            `• ${product.quantity} kg de ${product.name}%0A`;
 
     });
+
+    message +=
+        "%0AQuedo atento para coordinar";
+
+    const whatsappURL =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+});
 
 
     message +=
