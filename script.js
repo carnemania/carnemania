@@ -343,25 +343,7 @@ function sendWhatsApp() {
         whatsappURL,
         "_blank"
     );
-});
 
-
-    message +=
-        `%0ATotal estimado: $${total}%0A%0A`;
-
-    message +=
-        "Quedo atento para coordinar el pago por transferencia y la entrega.";
-
-
-    const whatsappURL =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
-
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
-}
 
 
 /* =========================================
