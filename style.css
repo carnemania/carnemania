@@ -698,6 +698,106 @@ footer span {
 
 @media (max-width: 800px) {
 
+
+    /* =========================
+   FOTOS DE PRODUCTOS
+========================= */
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    display: none;
+}
+
+.product-photo.active {
+    display: block;
+}
+
+
+/* Flechas */
+
+.photo-prev,
+.photo-next {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: rgba(0,0,0,0.55);
+
+    color: white;
+
+    font-size: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    opacity: 0.85;
+
+    transition: 0.2s;
+}
+
+.photo-prev:hover,
+.photo-next:hover {
+    background: rgba(0,0,0,0.8);
+    opacity: 1;
+}
+
+.photo-prev {
+    left: 12px;
+}
+
+.photo-next {
+    right: 12px;
+}
+
+
+/* Indicadores */
+
+.photo-dots {
+    position: absolute;
+
+    bottom: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 6px;
+
+    z-index: 5;
+}
+
+.photo-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.4);
+}
+
+.photo-dot.active {
+    background: white;
+}
     .hero {
         min-height: 600px;
 
