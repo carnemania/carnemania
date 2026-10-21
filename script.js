@@ -375,10 +375,6 @@ function sendWhatsApp() {
     });
 
 
-    message +=
-        "%0AQuedo atento para coordinar";
-
-
     const whatsappURL =
         `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
