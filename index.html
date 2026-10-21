@@ -82,8 +82,28 @@
                 <!-- PRODUCTO 1 -->
                 <article class="product-card">
 
-                    <div class="product-image">
-    <img src="images/asado.jpg" alt="Asado">
+                   <div class="product-image carousel">
+
+    <img
+        src="images/asado.jpg"
+        alt="Asado"
+        class="product-photo active"
+    >
+
+    <img
+        src="images/asado2.jpg"
+        alt="Asado"
+        class="product-photo"
+    >
+
+    <button class="photo-prev" onclick="changePhoto(this, -1)">
+        ‹
+    </button>
+
+    <button class="photo-next" onclick="changePhoto(this, 1)">
+        ›
+    </button>
+
 </div>
 
                     <div class="product-info">
