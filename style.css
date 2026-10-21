@@ -895,3 +895,16 @@ footer span {
 .header {
     top: 64px;
 }
+
+/* fotos reales */
+.real-photos {
+    display: block;
+    margin-top: 10px;
+
+    color: #777;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    letter-spacing: 1px;
+}
