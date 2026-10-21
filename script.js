@@ -340,6 +340,184 @@ function closeCart() {
         document.getElementById("cartOverlay");
 
 
+   /* =========================================
+   CARRUSEL DE FOTOS
+========================================= */
+
+function setupCarousels() {
+
+    const carousels =
+        document.querySelectorAll(".carousel");
+
+
+    carousels.forEach(carousel => {
+
+        const photos =
+            carousel.querySelectorAll(".product-photo");
+
+        const prev =
+            carousel.querySelector(".photo-prev");
+
+        const next =
+            carousel.querySelector(".photo-next");
+
+        const dots =
+            carousel.querySelector(".photo-dots");
+
+
+        /* Primera foto */
+
+        if (photos.length > 0) {
+
+            photos[0].classList.add("active");
+
+        }
+
+
+        /*
+           Si solamente hay una foto,
+           no mostramos controles.
+        */
+
+        if (photos.length <= 1) {
+
+            if (prev) {
+                prev.style.display = "none";
+            }
+
+            if (next) {
+                next.style.display = "none";
+            }
+
+            if (dots) {
+                dots.style.display = "none";
+            }
+
+            return;
+        }
+
+
+        /*
+           Crear puntos automáticamente
+        */
+
+        if (dots) {
+
+            photos.forEach((photo, index) => {
+
+                const dot =
+                    document.createElement("span");
+
+                dot.classList.add("photo-dot");
+
+                if (index === 0) {
+                    dot.classList.add("active");
+                }
+
+                dot.onclick = () => {
+
+                    showPhoto(
+                        carousel,
+                        index
+                    );
+
+                };
+
+                dots.appendChild(dot);
+
+            });
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   CAMBIAR FOTO
+========================================= */
+
+function changePhoto(button, direction) {
+
+    const carousel =
+        button.closest(".carousel");
+
+    const photos =
+        carousel.querySelectorAll(".product-photo");
+
+
+    let currentIndex = 0;
+
+
+    photos.forEach((photo, index) => {
+
+        if (photo.classList.contains("active")) {
+            currentIndex = index;
+        }
+
+    });
+
+
+    let newIndex =
+        currentIndex + direction;
+
+
+    if (newIndex < 0) {
+        newIndex = photos.length - 1;
+    }
+
+    if (newIndex >= photos.length) {
+        newIndex = 0;
+    }
+
+
+    showPhoto(
+        carousel,
+        newIndex
+    );
+}
+
+
+/* =========================================
+   MOSTRAR FOTO
+========================================= */
+
+function showPhoto(carousel, index) {
+
+    const photos =
+        carousel.querySelectorAll(".product-photo");
+
+    const dots =
+        carousel.querySelectorAll(".photo-dot");
+
+
+    photos.forEach(photo => {
+        photo.classList.remove("active");
+    });
+
+
+    dots.forEach(dot => {
+        dot.classList.remove("active");
+    });
+
+
+    if (photos[index]) {
+        photos[index].classList.add("active");
+    }
+
+
+    if (dots[index]) {
+        dots[index].classList.add("active");
+    }
+}
+
+
+/* =========================================
+   INICIAR CARRUSELES
+========================================= */
+
+setupCarousels();
     if (cartElement) {
         cartElement.classList.remove("active");
     }
