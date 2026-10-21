@@ -47,6 +47,47 @@ function changeAnnouncement() {
 
 setInterval(changeAnnouncement, 5000);
 
+/* =========================================
+   UBICACIÓN / ENVÍOS
+========================================= */
+
+const deliveryMessages = [
+    "🚚 Envíos a domicilio",
+    "📍 Ciudad del Plata",
+    "📍 Playa Pascual",
+    "📍 Consulta en tu zona"
+];
+
+let deliveryIndex = 0;
+
+const deliveryText =
+    document.getElementById("deliveryText");
+
+
+function changeDeliveryMessage() {
+
+    if (!deliveryText) return;
+
+    deliveryText.style.opacity = "0";
+
+    setTimeout(() => {
+
+        deliveryIndex++;
+
+        if (deliveryIndex >= deliveryMessages.length) {
+            deliveryIndex = 0;
+        }
+
+        deliveryText.textContent =
+            deliveryMessages[deliveryIndex];
+
+        deliveryText.style.opacity = "1";
+
+    }, 300);
+}
+
+
+setInterval(changeDeliveryMessage, 3500);
 
 /* =========================================
    CARRITO
