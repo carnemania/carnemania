@@ -708,18 +708,22 @@ footer span {
     overflow: hidden;
 }
 
-.product-photo {
+
+.product-image.carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image.carousel .product-photo {
+    display: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
-
-    display: none;
 }
 
-.product-photo.active {
+.product-image.carousel .product-photo.active {
     display: block;
 }
-
 
 /* Flechas */
 
